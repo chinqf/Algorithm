@@ -6,9 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="algorithmcommons" />
-        <module name="algorithmutils" />
+        <module name="algorithm-commons" />
         <module name="algorithmcore" />
+        <module name="algorithm-core" />
+        <module name="algorithm-utils" />
+        <module name="algorithmutils" />
+        <module name="algorithmcommons" />
       </profile>
     </annotationProcessing>
   </component>

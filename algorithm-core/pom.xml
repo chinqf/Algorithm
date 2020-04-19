@@ -11,6 +11,14 @@
 
     <artifactId>algorithm-core</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.chinqf</groupId>
+            <artifactId>algorithm-commons</artifactId>
+            <version>V1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>
