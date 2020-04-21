@@ -20,6 +20,7 @@ public class TrappingRainWater {
         int ans = 0, current = 0;
         LinkedList<Integer> st = new LinkedList<Integer>();
         while (current < height.length) {
+            // 一个条形块长于栈顶，我们可以确定栈顶的条形块被当前条形块和栈的前一个条形块界定，因此我们可以弹出栈顶元素并且累加答案到ans
             while (!st.isEmpty() && height[current] > height[st.getLast()]) {
                 int top = st.removeLast();
                 if (st.isEmpty())
@@ -28,6 +29,7 @@ public class TrappingRainWater {
                 int bounded_height = Math.min(height[current], height[st.getLast()]) - height[top];
                 ans += distance * bounded_height;
             }
+            // 存索引，表示后面到这里面的索引之间有位置可以接雨水
             st.addLast(current++);
         }
         return ans;
