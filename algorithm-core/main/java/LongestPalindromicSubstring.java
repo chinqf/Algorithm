@@ -13,18 +13,22 @@ import java.util.Map;
 public class LongestPalindromicSubstring {
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("ababc"));
+        System.out.println(longestPalindrome(""));
     }
 
 
     public static String longestPalindrome(String s) {
-        String ans = null;
+        if(s.length()==1) return s;
+        if(s.length()==0) return "";
+        String ans = "";
         int left_index = 0;
         int right_index = 0;
         int max = 0;
         Map<Integer, String> map = new HashMap();
         for (int i=1; i<s.length(); i++) {
             if (s.charAt(i) == s.charAt(i-1)) {
+                left_index = i-1;
+                right_index = i;
                 for(int j=i+1; j<s.length(); j++) {
                     if (2*i - j - 1 < 0){
                         break;
@@ -40,6 +44,8 @@ public class LongestPalindromicSubstring {
                 map.put(ans.length(), ans);
                 max = Math.max(max, ans.length());
             } else if (i>=2 && s.charAt(i) == s.charAt(i-2)) {
+                left_index = i-2;
+                right_index = i;
                 for(int j=i; j<s.length(); j++) {
                     if (2*(i-1) - j < 0){
                         break;
@@ -56,7 +62,7 @@ public class LongestPalindromicSubstring {
                 max = Math.max(max, ans.length());
             }
         }
-        return map.get(max);
+        return map.getOrDefault(max, s.substring(0));
     }
 
 
