@@ -18,51 +18,39 @@ public class LongestPalindromicSubstring {
 
 
     public static String longestPalindrome(String s) {
-        if(s.length()==1) return s;
-        if(s.length()==0) return "";
-        String ans = "";
-        int left_index = 0;
-        int right_index = 0;
-        int max = 0;
-        Map<Integer, String> map = new HashMap();
-        for (int i=1; i<s.length(); i++) {
-            if (s.charAt(i) == s.charAt(i-1)) {
-                left_index = i-1;
-                right_index = i;
-                for(int j=i+1; j<s.length(); j++) {
-                    if (2*i - j - 1 < 0){
-                        break;
-                    }
-                    if (s.charAt(j) == s.charAt(2*i-j-1)) {
-                        left_index = 2*i-j-1;
-                        right_index = j;
-                    } else {
-                        break;
-                    }
-                }
-                ans = s.substring(left_index, right_index+1);
-                map.put(ans.length(), ans);
-                max = Math.max(max, ans.length());
-            } else if (i>=2 && s.charAt(i) == s.charAt(i-2)) {
-                left_index = i-2;
-                right_index = i;
-                for(int j=i; j<s.length(); j++) {
-                    if (2*(i-1) - j < 0){
-                        break;
-                    }
-                    if (s.charAt(j) == s.charAt(2*i-j-1)) {
-                        left_index = 2*(i-1)-j;
-                        right_index = j;
-                    } else {
-                        break;
-                    }
-                }
-                ans = s.substring(left_index, right_index+1);
-                map.put(ans.length(), ans);
-                max = Math.max(max, ans.length());
-            }
+        if (s==null || s.length() == 0) {
+            return "";
         }
-        return map.getOrDefault(max, s.substring(0));
+        int strLen = s.length();
+        int left = 0;
+        int right = 0;
+        int len = 1;
+        int maxStart = 0;
+        int maxLen = 0;
+        for(int i=0; i<strLen; i++) {
+            left = i-1;
+            right = i+1;
+
+            while (left >= 0 && s.charAt(left) == s.charAt(i)) {
+                len ++;
+                left --;
+            }
+            while (right < strLen && s.charAt(right) == s.charAt(i)) {
+                len ++;
+                right ++;
+            }
+            while (left >= 0 && right < strLen && s.charAt(right) == s.charAt(left)) {
+                len = len + 2;
+                left --;
+                right ++;
+            }
+            if (len > maxLen) {
+                maxLen = len;
+                maxStart = left;
+            }
+            len = 1;
+        }
+        return s.substring(maxStart+1, maxStart + maxLen + 1);
     }
 
 
