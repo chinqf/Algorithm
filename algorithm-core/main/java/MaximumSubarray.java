@@ -7,7 +7,7 @@
 public class MaximumSubarray {
 
     public static void main(String[] args) {
-        int[] arr = {1, 1, -1, 98};
+        int[] arr = {-2,1,-3,4,-1,2,1,-5,4};
         System.out.println(solution(arr));
     }
 
@@ -15,8 +15,8 @@ public class MaximumSubarray {
         int max = arr[0];
         int currSum = arr[0];
         for (int i=1; i<arr.length; i++) {
-            currSum = Math.max(currSum+arr[i], arr[i]);
-            max = Math.max(max, currSum);
+            currSum = (currSum+arr[i])>arr[i] ? (currSum+arr[i]):arr[i];
+            max = max>currSum?max:currSum;
         }
         return max;
     }
