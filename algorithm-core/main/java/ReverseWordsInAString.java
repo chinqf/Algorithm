@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /** 翻转字符串里的单词
  * 给定一个字符串，逐个翻转字符串中的每个单词。
@@ -21,19 +23,62 @@ import java.util.Arrays;
  */
 public class ReverseWordsInAString {
     public static void main(String[] args) {
-        String s = "  hello world!  ";
+        String s = "  hello   world!  ";
         System.out.println(solution(s));
     }
 
-    public static String solution(String s) {
-        String[] arr = s.split(" ");
-        if (arr.length==1) return s;
-        StringBuffer sb = new StringBuffer();
-        for(int i=arr.length-1; i>=0; i--) {
-            if(!arr[i].equals("")) {
-                sb.append(arr[i] + " ");
-            }
-        }
-        return  sb.substring(0, sb.length()-1);
+    public static String solution2(String s) {
+        // 除去开头和末尾的空白字符
+        s = s.trim();
+        // 正则匹配连续的空白字符作为分隔符分割
+        List<String> wordList = Arrays.asList(s.split("\\s+"));
+        Collections.reverse(wordList);
+        return String.join(" ", wordList);
     }
+
+    public static String solution(String s) {
+        int left = 0, right = s.length()-1;
+        // 去掉字符串左右两边空格
+        while (left <= right && s.charAt(left) == ' ') {
+            left++;
+        }
+        while (right >= left && s.charAt(right) == ' ') {
+            right--;
+        }
+
+        // 去除字符串里面多余的空格
+        StringBuffer sb = new StringBuffer();
+        while(left <= right) {
+            if (s.charAt(left) != ' ') {
+                sb.append(s.charAt(left));
+            } else if (sb.charAt(sb.length()-1) != ' ') {
+                sb.append(' ');
+            }
+            left++;
+        }
+
+        // 反转整个字符串
+        reverse(sb, 0, sb.length()-1);
+
+        // 反转字符串中的每个单词
+        int start=0,end=0;
+        while(start < sb.length()) {
+            while (end<sb.length() && sb.charAt(end) != ' ') {
+                end++;
+            }
+            reverse(sb, start, end-1);
+            start = end+1;
+            end++;
+        }
+        return sb.toString();
+    }
+
+    public static void reverse(StringBuffer sb, int start, int end) {
+        while (start < end) {
+            char tmp = sb.charAt(start);
+            sb.setCharAt(start++, sb.charAt(end));
+            sb.setCharAt(end--, tmp);
+        }
+    }
+
 }
