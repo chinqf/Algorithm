@@ -21,12 +21,28 @@ import java.util.List;
  * 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
  * 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
  */
-public class ReverseWordsInAString {
+public class ReverseWordsInAString1 {
     public static void main(String[] args) {
         String s = "  hello   world!  ";
-        System.out.println(solution(s));
+        System.out.println(solution3(s));
+
+        StringBuffer sb = new StringBuffer();
     }
 
+    // split + 拼接
+    public static String solution3(String s) {
+        s = s.trim();
+        String[] arr = s.split(" ");
+        StringBuffer sb = new StringBuffer();
+        for (int i=arr.length-1; i>=0; i--) {
+            if (!arr[i].equals("")) {
+                sb.append(arr[i] + " ");
+            }
+        }
+        return sb.length()>0?sb.substring(0, sb.length()-1):"";
+    }
+
+    // 使用java api
     public static String solution2(String s) {
         // 除去开头和末尾的空白字符
         s = s.trim();
@@ -36,6 +52,7 @@ public class ReverseWordsInAString {
         return String.join(" ", wordList);
     }
 
+    // 翻转整个字符串，再翻转每个单词
     public static String solution(String s) {
         int left = 0, right = s.length()-1;
         // 去掉字符串左右两边空格
