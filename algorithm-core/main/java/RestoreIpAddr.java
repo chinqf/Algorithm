@@ -14,6 +14,8 @@ public class RestoreIpAddr {
     public static void main(String[] args) {
         String s = "25525511135";
         System.out.println(restoreIpAddresses(s));
+
+
     }
 
     public static List<String> restoreIpAddresses(String s) {
@@ -51,7 +53,7 @@ public class RestoreIpAddr {
             if(segment.startsWith("0") && segment.length()>1 || (i==3&&Integer.parseInt(segment) > 255)) {
                 continue;
             }
-            // 符合要求的段假如到curr中
+            // 符合要求的段加入到curr中
             curr.add(segment);
             // 继续递归遍历下一个位置
             back(s, pos+i, curr, ans);
