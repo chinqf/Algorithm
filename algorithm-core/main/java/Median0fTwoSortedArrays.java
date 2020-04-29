@@ -44,15 +44,25 @@ public class Median0fTwoSortedArrays {
 
     // 复杂度 O(log(M+N)) 二分查找+取第k小数的思路
     public double findMedianSortedArrays02(int[] nums1, int[] nums2) {
-        int len1 = nums1.length;
-        int len2 = nums2.length;
+        int len1 = nums1.length, len2 = nums2.length;
+        int index01 = 0, index02 = 0;
         // 中位数位置
         int pos = (len1+len2) / 2;
         int mid = 0;
         int start = 0;
         while (pos >= 0) {
             mid = pos / 2;
-            if (nums1[])
+            if (len1-index01-1 < mid) {
+
+            } else if (len2-index02-1 < mid) {
+
+            } else {
+                if (nums1[index01+mid-1]>nums2[index02+mid-1]) {
+                    index02 = index02+mid-1;
+                } else {
+                    index01 = index01+mid-1;
+                }
+            }
         }
         return -1;
     }
