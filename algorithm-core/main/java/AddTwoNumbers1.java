@@ -23,6 +23,7 @@ public class AddTwoNumbers1 {
             res = res.next;
         }
     }
+
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(0);
         ListNode curr = head;
