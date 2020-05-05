@@ -1,3 +1,5 @@
+import Template.TreeNode;
+
 import java.util.*;
 
 /** 二叉树的最近公共祖先
@@ -43,7 +45,7 @@ public class LowestCommonAncestorOfABinaryTree {
         while(!parent.containsKey(p)||!parent.containsKey(q)) {
             TreeNode node = stack.pop();
             // 遍历树的时候存储父指针
-            if(node.left != null) {
+            if(node != null) {
                 parent.put(node.left, node);
                 stack.push(node.left);
             }

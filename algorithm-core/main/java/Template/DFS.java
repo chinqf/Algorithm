@@ -17,7 +17,6 @@ public class DFS {
         tree.right.right = new TreeNode(7);
 
         dfs02(tree);
-
     }
 
     // 递归版深度优先遍历树
