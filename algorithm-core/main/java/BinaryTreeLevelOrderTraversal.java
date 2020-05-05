@@ -1,3 +1,5 @@
+import Template.TreeNode;
+
 import java.util.List;
 
 /** 二叉树的层序遍历
@@ -22,11 +24,13 @@ public class BinaryTreeLevelOrderTraversal {
 
     }
 
-//    public List<List<Integer>> levelOrder(TreeNode root) {
+//    public static List<List<Integer>> levelOrder(TreeNode root) {
 //
 //    }
 
+    public static void dfs(TreeNode node, int level, List<List<Integer>> ans) {
 
+    }
 }
 
 
