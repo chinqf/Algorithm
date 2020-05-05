@@ -1,3 +1,5 @@
+package 字符串;
+
 import java.util.Arrays;
 
 /** 字符串的排列

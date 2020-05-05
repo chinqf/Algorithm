@@ -1,3 +1,5 @@
+package 数组;
+
 import java.util.LinkedList;
 
 /**

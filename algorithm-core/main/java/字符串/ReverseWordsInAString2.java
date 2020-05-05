@@ -1,3 +1,5 @@
+package 字符串;
+
 import java.util.Arrays;
 
 /** 翻转字符串里的单词2

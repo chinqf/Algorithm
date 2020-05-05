@@ -1,3 +1,5 @@
+package 递归回溯分治;
+
 import java.util.List;
 
 /** 括号生成
@@ -13,7 +15,8 @@ import java.util.List;
  * ]
  */
 
-public class GenerateParentheses {
+public class
+GenerateParentheses {
     public static void main(String[] args) {
 
     }

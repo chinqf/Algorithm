@@ -1,3 +1,5 @@
+package 递归回溯分治;
+
 import java.util.*;
 
 public class NQueue2 {

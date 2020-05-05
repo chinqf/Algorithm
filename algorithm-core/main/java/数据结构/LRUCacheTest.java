@@ -1,5 +1,6 @@
+package 数据结构;
+
 import java.util.Hashtable;
-import java.util.LinkedHashMap;
 
 /** LRU缓存机制
  * 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
@@ -10,7 +11,7 @@ import java.util.LinkedHashMap;
  * 你是否可以在 O(1) 时间复杂度内完成这两种操作？
  *
  * 示例：
- * LRUCache cache = new LRUCache( 2 -- 缓存容量)
+ * 数据结构.LRUCache cache = new 数据结构.LRUCache( 2 -- 缓存容量)
  * cache.put(1,1);
  * cache.put(2,2);
  * cache.get(1);       // 返回  1
