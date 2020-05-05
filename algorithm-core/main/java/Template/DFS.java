@@ -30,14 +30,11 @@ public class DFS {
     public static void dfs01(TreeNode node) {
         // 1. 递归终止条件
         if(node==null) return;
-
         // 2. 处理当前层逻辑
         System.out.println(node.val);
-
         // 3. 下挖一层
         dfs01(node.left);
         dfs01(node.right);
-        // 4. 恢复状态
     }
     // 递归版深度优先遍历树(中序遍历)
     public static void dfs02(TreeNode node) {
