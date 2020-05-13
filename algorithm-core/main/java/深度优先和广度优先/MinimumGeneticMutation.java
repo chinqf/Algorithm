@@ -1,4 +1,10 @@
 package 深度优先和广度优先;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /** 最小基金变化
  * 一条基因序列由一个带有8个字符的字符串表示，其中每个字符都属于 "A", "C", "G", "T"中的任意一个。
  * 假设我们要调查一个基因序列的变化。一次基因变化意味着这个基因序列中的一个字符发生了变化。
@@ -32,10 +38,47 @@ package 深度优先和广度优先;
 
 public class MinimumGeneticMutation {
     public static void main(String[] args) {
-
+        String start =  "AACCGGTT";
+        String end = "AAACGGTA";
+        String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
+        System.out.println(minMutation(start, end, bank));
     }
 
-    public int minMutation(String start, String end, String[] bank) {
-
+    static int minStepCount = Integer.MAX_VALUE;
+    public static int minMutation(String start, String end, String[] bank) {
+        HashSet<String> set = new HashSet<>();
+        dfs(set, 0, start, end, bank);
+        return minStepCount;
     }
+
+    /**
+     *
+     * @param strs       已经遍历过的bank[]中的
+     * @param stepCount  经过的步数
+     * @param current    当前字符串
+     * @param target     目标字符串
+     * @param bank       基因库
+     */
+    public static void dfs(HashSet<String> strs, int stepCount, String current, String target, String[] bank) {
+        // 1. 递归终止条件
+        if (current.equals(target)) {
+            minStepCount = Math.min(minStepCount, stepCount);
+        }
+        // 2. 找到跟当前字符串只差一个字母的，然后继续往下
+        for(String str: bank) {
+            int diff = 0;
+            for(int i=0; i<str.length(); i++) {
+                if(current.charAt(i)!=str.charAt(i))
+                    if(++diff>1) break;
+            }
+            if(diff==1&&!strs.contains(str)) {
+                strs.add(str);
+                dfs(strs, stepCount+1, str, target, bank);
+                strs.remove(str);
+            }
+            Map list = null;
+
+        }
+    }
+
 }

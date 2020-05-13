@@ -85,7 +85,6 @@ public class DFS {
 
     // 非递归版深度优先遍历树(后序遍历 — 双栈)
     public static void dfs06(TreeNode node) {
-        // 创建一个栈辅助遍历
         Stack<TreeNode> stack01 = new Stack<>();
         Stack<TreeNode> stack02 = new Stack<>();
         stack01.push(node);
