@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>algorithm-utils</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>leetcode</artifactId>
 
 
 </project>

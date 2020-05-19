@@ -9,10 +9,13 @@
         <module name="algorithm-commons" />
         <module name="algorithmcore" />
         <module name="algorithm-core" />
-        <module name="algorithm-utils" />
         <module name="algorithmutils" />
         <module name="algorithmcommons" />
+        <module name="leetcode" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="algorithm-utils" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
