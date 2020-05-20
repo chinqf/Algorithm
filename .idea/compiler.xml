@@ -9,8 +9,8 @@
         <module name="algorithm-commons" />
         <module name="algorithmcore" />
         <module name="algorithm-core" />
-        <module name="algorithmutils" />
         <module name="algorithmcommons" />
+        <module name="algorithmutils" />
         <module name="leetcode" />
       </profile>
     </annotationProcessing>
