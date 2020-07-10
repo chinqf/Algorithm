@@ -3,6 +3,7 @@ package leetcode.editor.cn;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * 以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。
@@ -41,7 +42,7 @@ import java.util.LinkedList;
 public class P71_SimplifyPath_简化路径 {
     public static void main(String[] args) {
         Solution solution = new P71_SimplifyPath_简化路径().new Solution();
-        System.out.println(solution.simplifyPath("/a//b////c/d//././/.."));
+        System.out.println(solution.simplifyPath("/home/"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -63,7 +64,7 @@ public class P71_SimplifyPath_简化路径 {
             for (int i = 0; i < words.length; i++) {
                 if (words[i].equals("..") && !list.isEmpty()) {
                     list.removeLast();
-                } else if (!words[i].equals(".") && !words[i].equals("/") && !words[i].equals("") && !words[i].equals("..")) {
+                } else if (!words[i].equals(".") && !words[i].equals("") && !words[i].equals("..")) {
                     list.addLast(words[i]);
                 }
             }
@@ -79,4 +80,20 @@ public class P71_SimplifyPath_简化路径 {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    // 简化代码
+    public static String simplifyPath(String path) {
+        Stack<String> stack = new Stack<String>();
+        for (String str: path.split("/")) {
+            if (str.equals("..") && !stack.isEmpty()) {
+                stack.pop();
+            } else if (!str.equals(".") && !str.equals("") && !str.equals("..")) {
+                stack.push(str);
+            }
+        }
+        StringBuffer sb = new StringBuffer();
+        for (String str: stack) {
+            sb.append("/").append(str);
+        }
+        return stack.size() == 0 ? "/" : sb.toString();
+    }
 }
