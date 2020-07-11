@@ -19,63 +19,70 @@ import java.util.Arrays;
 public class P215_KthLargestElementInAnArray_数组中的第K个最大元素 {
     public static void main(String[] args) {
         Solution solution = new P215_KthLargestElementInAnArray_数组中的第K个最大元素().new Solution();
-        int[] nums = {5, 8, 4, 2, 9, 7, 3};
-        System.out.println(solution.findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2));
-        moveEle(nums, 0, nums.length - 1);
-        System.out.println(Arrays.toString(nums));
+        int[] nums = {3,2,1,5,6,4};
+        System.out.println(findKthLargest03(nums, 2));
 
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findKthLargest(int[] nums, int k) {
-            Arrays.sort(nums);
-            return nums[nums.length - k];
-        }
     }
-
     //leetcode submit region end(Prohibit modification and deletion)
-    // 方法1：使用快排排序后取出对应元素
+
+    // 方法1：使用快排排序后取出对应元素。执行耗时:38 ms,击败了9.25% 的Java用户
     public static int findKthLargest01(int[] nums, int k) {
-        return 0;
+        quickSort(nums, 0, nums.length - 1);
+        return nums[nums.length - k];
     }
 
-    public static void quickSort(int[] nums,) {
-
-    }
-
-    public static void moveEle(int[] nums, int start, int end) {
-        int point = nums[start], left = start, right = end;
-        while (left < right) {
-            while (left < right ) {
-                if (nums[right] < point) {
-                    nums[left] = nums[right];
-                    break;
-                } else {
-                    right--;
-                }
-            }
-            while (left < right ) {
-                if (nums[left] > point) {
-                    nums[right] = nums[left];
-                    break;
-                } else {
-                    left++;
-                }
-            }
+    public static void quickSort(int[] nums, int start, int end) {
+        if (start >= end) {
+            return;
         }
-        nums[left] = point;
+        int index = getIndex(nums, start, end);
+        quickSort(nums, start, index - 1);
+        quickSort(nums, index + 1, end);
+    }
+
+    public static int getIndex(int[] nums, int start, int end) {
+        int point = nums[start];
+        while (start < end) {
+            while (start < end && nums[end] >= point ) {
+                end--;
+            }
+            nums[start] = nums[end];
+            while (start < end && nums[start] <= point ) {
+                start++;
+            }
+            nums[end] = nums[start];
+        }
+        nums[start] = point;
+        return start;
     }
 
     // 方法2：构建k个元素的大根堆
-//    public int findKthLargest02(int[] nums, int k) {
-//
-//    }
-//
-//    // 方法3：对快速排序进行改进(原本需要对基准元素的两边都递归，可以采用二分法的思想对一边进行递归)
-//
-//    public int findKthLargest03(int[] nums, int k) {
-//
-//    }
+    public int findKthLargest02(int[] nums, int k) {
+
+    }
+
+    // 方法3：对快速排序进行改进(原本需要对基准元素的两边都递归，可以采用二分法的思想对一边进行递归)
+    // 执行耗时:10 ms,击败了29.29% 的Java用户
+    public static int findKthLargest03(int[] nums, int k) {
+        sortHalf(nums, 0, nums.length - 1, k);
+        return nums[nums.length - k];
+    }
+
+    public static void sortHalf(int[] nums, int start, int end, int k) {
+        if (start >= end) {
+            return;
+        }
+        int index = getIndex(nums, start, end);
+        int targetIndex = nums.length - k;
+        if (targetIndex < index) {
+            sortHalf(nums, start, index - 1, k);
+        } else if (targetIndex > index) {
+            sortHalf(nums, index + 1, end, k);
+        }
+    }
 
 }
