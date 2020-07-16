@@ -1,6 +1,7 @@
 package leetcode.editor.cn;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * 在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
@@ -26,6 +27,45 @@ public class P215_KthLargestElementInAnArray_数组中的第K个最大元素 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int findKthLargest(int[] nums, int k) {
+            return quickSelect(nums, 0, nums.length - 1, k);
+        }
+
+        public int quickSelect(int[] nums, int start, int end, int k) {
+            int index = randomIndex(nums, start, end);
+            if (index == nums.length - k) {
+                return nums[index];
+            } else {
+                return index < k ? quickSelect(nums, index + 1, end, k) : quickSelect(nums, start, index - 1, k);
+            }
+        }
+
+        Random random = new Random();
+        public int randomIndex(int[] nums, int start, int end) {
+            int i = random.nextInt(end - start + 1) + 1;
+            int tmp = nums[start];
+            nums[start] = nums[i];
+            nums[i] = tmp;
+            return getIndex(nums, start, end);
+        }
+        public int getIndex(int[] nums, int start, int end) {
+            int point = nums[start];
+            while (start < end) {
+                while (start < end && nums[end] >= point ) {
+                    end--;
+                }
+                nums[start] = nums[end];
+                while (start < end && nums[start] <= point ) {
+                    start++;
+                }
+                nums[end] = nums[start];
+            }
+            nums[start] = point;
+            return start;
+        }
+
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
@@ -132,5 +172,25 @@ public class P215_KthLargestElementInAnArray_数组中的第K个最大元素 {
     }
 
     // 方法4：快排继续改进
+    public static int findKthLargest04(int[] nums, int k) {
+        return quickSelect(nums, 0, nums.length - 1, nums.length - k);
+    }
 
+    public static int quickSelect(int[] nums, int start, int end, int k) {
+        int index = randomIndex(nums, start, end);
+        if (index == k) {
+            return nums[index];
+        } else {
+            return index < k ? quickSelect(nums, index + 1, end, k) : quickSelect(nums, start, index - 1, k);
+        }
+    }
+
+    static Random random = new Random();
+    public static int randomIndex(int[] nums, int start, int end) {
+        int i = random.nextInt(end - start + 1) + 1;
+        int tmp = nums[start];
+        nums[start] = nums[i];
+        nums[i] = tmp;
+        return getIndex(nums, start, end);
+    }
 }
