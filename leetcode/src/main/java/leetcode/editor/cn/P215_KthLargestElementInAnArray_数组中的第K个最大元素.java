@@ -62,6 +62,7 @@ public class P215_KthLargestElementInAnArray_数组中的第K个最大元素 {
     }
 
     // 方法2：构建k个元素的大根堆
+    // 执行耗时:4 ms,击败了59.54% 的Java用户
     public static int findKthLargest02(int[] nums, int k) {
         int[] heap = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
