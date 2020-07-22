@@ -33,41 +33,62 @@ package leetcode.editor.cn;
 public class P122_BestTimeToBuyAndSellStockIi_买卖股票的最佳时机II {
     public static void main(String[] args) {
         Solution solution = new P122_BestTimeToBuyAndSellStockIi_买卖股票的最佳时机II().new Solution();
-        System.out.println(maxProfit01(new int[]{7,6,4,3,1}));
+        System.out.println(maxProfit01(new int[]{7, 6, 4, 3, 1}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int maxProfit(int[] prices) {
+            if (prices.length <= 1) {
+                return 0;
+            }
+            int res = 0;
+            for (int i = 1; i < prices.length; i++) {
+                if (prices[i] > prices[i - 1]) {
+                    res += (prices[i] - prices[i - 1]);
+                }
+            }
+            return res;
+        }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
     // 方法1：设置两个指针，一个指向从前到后的变小的那个最小的，一个指向这个最小的往后变大的最大的，然后相减。重复这个过程
+    // 执行耗时:1 ms,击败了99.50% 的Java用户
     public static int maxProfit01(int[] prices) {
         if (prices.length <= 1) {
             return 0;
         }
         int min = prices[0], max = prices[0];
         int sum = 0;
-        int i = 1;
-        while (i < prices.length) {
-            while (i < prices.length && prices[i] < min) {
-                min = prices[i];
+        int i = 0;
+        while (i < prices.length - 1) {
+            while (i < prices.length - 1 && prices[i + 1] <= prices[i]) {
                 i++;
             }
-            if (i <= prices.length) {
-                max = min;
-            }
-            while (i < prices.length && prices[i] > max) {
-                max = prices[i];
+            min = prices[i];
+            while (i < prices.length - 1 && prices[i + 1] >= prices[i]) {
                 i++;
             }
+            max = prices[i];
             sum += (max - min);
-            if (i < prices.length) {
-                min = prices[i];
-            }
-            i ++;
         }
         return sum;
+    }
+
+    // 方法2：不需要两个指针，只需要在后面的>前面数字的情况下进行累加就行
+    // 执行耗时:1 ms,击败了99.50% 的Java用户
+    public static int maxProfit02(int[] prices) {
+        if (prices.length <= 1) {
+            return 0;
+        }
+        int res = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1]) {
+                res += (prices[i] - prices[i - 1]);
+            }
+        }
+        return res;
     }
 
 }
