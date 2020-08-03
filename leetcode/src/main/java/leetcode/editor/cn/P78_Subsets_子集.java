@@ -20,19 +20,23 @@ public class P78_Subsets_子集 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+
         public List<List<Integer>> subsets(int[] nums) {
-            List<List<Integer>> result = new ArrayList<List<Integer>>();
-            // 外层循环: 因每一位要么是0要么是1，所以有2^n种子集
-            for (int i = 0; i < (1 << nums.length); i++) {
-                List<Integer> sub = new ArrayList<Integer>();
-                for (int j = 0; j < nums.length; j++) {
-                    if (((i >> j) & 1) == 1) {
-                        sub.add(nums[j]);
-                    }
-                }
-                result.add(sub);
-            }
+            recur(nums, 0, new ArrayList<Integer>());
             return result;
+        }
+
+        public void recur(int[] nums, int level, ArrayList<Integer> item) {
+            if (level == nums.length) {
+                result.add(new ArrayList<Integer>(item));
+                return;
+            }
+            recur(nums, level + 1, item);
+            item.add(nums[level]);
+            recur(nums, level + 1, item);
+
+            item.remove(item.size() - 1);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
@@ -45,6 +49,7 @@ public class P78_Subsets_子集 {
         for (int i = 0; i < (1 << nums.length); i++) {
             List<Integer> sub = new ArrayList<Integer>();
             for (int j = 0; j < nums.length; j++) {
+                // 从右往左判断各个位是0还是1
                 if (((i >> j) & 1) == 1) {
                     sub.add(nums[j]);
                 }
@@ -52,6 +57,27 @@ public class P78_Subsets_子集 {
             result.add(sub);
         }
         return result;
+    }
+
+    // 方法2：回溯
+    // 执行耗时:1 ms,击败了99.15% 的Java用户
+    static List<List<Integer>> result = new ArrayList<List<Integer>>();
+
+    public static List<List<Integer>> subsets02(int[] nums) {
+        recur(nums, 0, new ArrayList<Integer>());
+        return result;
+    }
+
+    public static void recur(int[] nums, int level, ArrayList<Integer> item) {
+        if (level == nums.length) {
+            result.add(new ArrayList<Integer>(item));
+            return;
+        }
+        recur(nums, level + 1, item);
+        item.add(nums[level]);
+        recur(nums, level + 1, item);
+
+        item.remove(item.size() - 1);
     }
 
 }
