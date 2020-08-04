@@ -3,6 +3,7 @@ import common.node.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 给定一个二叉树，返回它的中序 遍历。
@@ -24,7 +25,22 @@ public class P94_BinaryTreeInorderTraversal_二叉树的中序遍历 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-
+        public List<Integer> inorderTraversal(TreeNode root) {
+            // 创建栈辅助遍历
+            Stack<TreeNode> stack = new Stack();
+            List<Integer> result = new ArrayList<Integer>();
+            while (!stack.isEmpty() || root != null) {
+                if (root != null) {
+                    stack.push(root);
+                    root = root.left;
+                } else {
+                    root = stack.pop();
+                    result.add(root.val);
+                    root = root.right;
+                }
+            }
+            return result;
+        }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
@@ -45,9 +61,22 @@ public class P94_BinaryTreeInorderTraversal_二叉树的中序遍历 {
     }
 
     // 方法2：使用栈
+    // 执行耗时:1 ms,击败了49.46% 的Java用户
     public static List<Integer> inorderTraversal02(TreeNode root) {
-        dfs(root);
-        return res;
+        // 创建栈辅助遍历
+        Stack<TreeNode> stack = new Stack();
+        List<Integer> result = new ArrayList<Integer>();
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
+            } else {
+                root = stack.pop();
+                result.add(root.val);
+                root = root.right;
+            }
+        }
+        return result;
     }
 
 
