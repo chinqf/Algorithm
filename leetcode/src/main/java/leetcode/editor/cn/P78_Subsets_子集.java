@@ -59,7 +59,7 @@ public class P78_Subsets_子集 {
         return result;
     }
 
-    // 方法2：回溯
+    // 方法2：回溯，递归树的中序遍历
     // 执行耗时:1 ms,击败了99.15% 的Java用户
     static List<List<Integer>> result = new ArrayList<List<Integer>>();
 
@@ -73,10 +73,14 @@ public class P78_Subsets_子集 {
             result.add(new ArrayList<Integer>(item));
             return;
         }
+        // 不选
         recur(nums, level + 1, item);
+        // 选
         item.add(nums[level]);
+        // 回溯
         recur(nums, level + 1, item);
 
+        // 回溯的时候需要注意清理一下，回归之前状态
         item.remove(item.size() - 1);
     }
 

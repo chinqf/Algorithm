@@ -21,7 +21,7 @@ public class DFS {
         tree.right.left = new TreeNode(6);
         tree.right.right = new TreeNode(7);
 
-        dfs06(tree);
+        dfs02(tree);
     }
 
 
