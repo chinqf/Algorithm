@@ -1,6 +1,6 @@
 package 树;
 
-import Template.TreeNode;
+import common.node.TreeNode;
 
 import java.util.*;
 

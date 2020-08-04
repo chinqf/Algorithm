@@ -1,4 +1,4 @@
-package Template;
+package common.node;
 
 public class TreeNode {
     public int val;

@@ -1,6 +1,6 @@
 package 深度优先和广度优先;
 
-import Template.TreeNode;
+import common.node.TreeNode;
 
 import java.util.*;
 

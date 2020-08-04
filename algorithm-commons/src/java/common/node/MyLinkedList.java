@@ -1,3 +1,5 @@
+package common.node;
+
 public class MyLinkedList {
 
     public MyLinkedList() {
