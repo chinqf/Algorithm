@@ -1,7 +1,7 @@
 package leetcode.editor.cn;
-
-
 import common.node.TreeNode;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,22 +21,34 @@ public class P94_BinaryTreeInorderTraversal_二叉树的中序遍历 {
     public static void main(String[] args) {
         Solution solution = new P94_BinaryTreeInorderTraversal_二叉树的中序遍历().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for a binary tree node.
-     * public class TreeNode {
-     * int val;
-     * TreeNode left;
-     * TreeNode right;
-     * TreeNode(int x) { val = x; }
-     * }
-     */
     class Solution {
-        public List<Integer> inorderTraversal(TreeNode root) {
 
-        }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
+
+    // 方法1：递归
+    // 执行耗时:0 ms,击败了100.00% 的Java用户
+    static List<Integer> res = new ArrayList<Integer>();
+    public static List<Integer> inorderTraversal01(TreeNode root) {
+        dfs(root);
+        return res;
+    }
+    public static void dfs(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        dfs(root.left);
+        res.add(root.val);
+        dfs(root.right);
+    }
+
+    // 方法2：使用栈
+    public static List<Integer> inorderTraversal02(TreeNode root) {
+        dfs(root);
+        return res;
+    }
+
 
 }
