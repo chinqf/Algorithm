@@ -59,8 +59,16 @@ public class P78_Subsets_子集 {
         return result;
     }
 
-    // 方法2：回溯，递归树的中序遍历
+    // 方法2：回溯，其实就是递归树的中序遍历
     // 执行耗时:1 ms,击败了99.15% 的Java用户
+    // 递归树示例：
+    //                         [1,2,3]
+    //                    /               \
+    //                不选1               选1
+    //                /   \              /   \
+    //            不选2   选2       不选2       选2
+    //            /  \   /  \       /  \       /  \
+    //        不选3 选3 不选3 选3  不选3 选3  不选3 选3
     static List<List<Integer>> result = new ArrayList<List<Integer>>();
 
     public static List<List<Integer>> subsets02(int[] nums) {
