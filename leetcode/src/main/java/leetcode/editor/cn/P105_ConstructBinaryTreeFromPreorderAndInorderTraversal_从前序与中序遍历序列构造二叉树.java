@@ -54,20 +54,20 @@ public class P105_ConstructBinaryTreeFromPreorderAndInorderTraversal_从前序�
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
-    // 根据前序遍历的顺序来区分左子树还是右子树
-    public static TreeNode buildTree01(int[] preorder, int[] inorder) {
+    // 方法1：递归
+    public static TreeNode buildTree(int[] preorder, int[] inorder) {
         return recur(preorder, inorder, 0, 0, inorder.length - 1);
     }
 
-    public static TreeNode recur(int[] preorder, int[] inorder, int pIndex, int start, int end) {
-        if (start > end || start < 0 || end < 0 ) {
+    public static TreeNode recur(int[] preorder, int[] inorder, int pStart, int start, int end) {
+        if (start > end || pStart > preorder.length - 1) {
             return null;
         }
-        TreeNode root = new TreeNode(preorder[pIndex]);
-        int index = getIndex(preorder[pIndex], inorder, start, end);
-        pIndex ++;
-        root.left = recur(preorder, inorder, pIndex, start, index - 1);
-        root.right = recur(preorder, inorder, pIndex, index + 1, end);
+        TreeNode root = new TreeNode(preorder[pStart]);
+        int index = getIndex(preorder[pStart], inorder, start, end);
+
+        root.left = recur(preorder, inorder, pStart + 1, start, index - 1);
+        root.right = recur(preorder, inorder, pStart + (index - start) + 1, index + 1, end);
         return root;
     }
 
@@ -80,4 +80,5 @@ public class P105_ConstructBinaryTreeFromPreorderAndInorderTraversal_从前序�
         return -1;
     }
 
+    //
 }
