@@ -163,6 +163,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/src/main/java/leetcode/editor/cn/P111_MinimumDepthOfBinaryTree_二叉树的最小深度.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/src/main/java/leetcode/editor/cn/P111_MinimumDepthOfBinaryTree_二叉树的最小深度.java" />
+              <option name="questionId" value="111" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/src/main/java/leetcode/editor/cn/P11_ContainerWithMostWater.java">
           <value>
             <LeetcodeEditor>
